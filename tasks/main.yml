@@ -1,0 +1,6 @@
+---
+- name: Install pip executable
+  shell: "command -v pip >/dev/null 2>&1"
+  changed_when: result.rc != 0
+  register: result
+  notify: install pip
