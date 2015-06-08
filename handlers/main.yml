@@ -8,3 +8,6 @@
 - name: really install pip
   shell: "cd /tmp && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py"
   when: result.rc != 0
+- name: upgrade setuptools
+  shell: "pip install --upgrade setuptools"
+  when: result.rc != 0
