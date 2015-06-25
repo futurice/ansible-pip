@@ -1,13 +1,3 @@
 ---
-# duplicating tasks pip command check, to be able to run handler standalone?
 - name: install pip
-  shell: "command -v pip >/dev/null 2>&1"
-  changed_when: result.rc != 0
-  register: result
-  notify: really install pip
-- name: really install pip
-  shell: "cd /tmp && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py"
-  when: result.rc != 0
-- name: upgrade setuptools
-  shell: "pip install --upgrade setuptools"
-  when: result.rc != 0
+  include: ../tasks/install.yml

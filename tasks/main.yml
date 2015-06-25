@@ -1,6 +1,7 @@
 ---
-- name: Install pip executable
-  shell: "command -v pip >/dev/null 2>&1"
-  changed_when: result.rc != 0
-  register: result
-  notify: install pip
+- name: Check if PIP needs to be installed
+  shell: "command -v pip &&echo '1'||echo '0'"
+  register: pip_exists
+
+- include: install.yml
+  when: pip_exists.stdout=="0"
